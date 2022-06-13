@@ -68,7 +68,7 @@ with st.echo(code_location='below'):
     m = folium.Map((55.67341,37.51384), zoom_start=12)
     for point in bike_data:
         folium.Circle(point['Cells']['geoData']['coordinates'][::-1],radius=20, tooltip=point['Cells']['Name']).add_to(m)
-    st_m =  st_folium(m, width = 700, height=500)
+    st_m =  st_folium(m, width = 700, height=500, key="st_f_1")
     df = pd.DataFrame([x['Cells'] for x in bike_data])
     df['lat'] = df['geoData'].apply(lambda x: x['coordinates'][1])
     df['lon'] = df['geoData'].apply(lambda x: x['coordinates'][0])
@@ -234,7 +234,7 @@ with st.echo(code_location='below'):
     st.write("Путь от точки старта к точке финиша на карте:")
     st.code("(Точки старта и финиша - красные, станции велопроката - синие, кратчайшее расстояние по прямой - зеленое)")
     
-    st_folium(m)
+    st_folium(m, key="st_f_2")
     
     st.subheader("Статистика по проекту")
     st.markdown("""
