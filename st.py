@@ -80,7 +80,7 @@ with st.echo(code_location='below'):
 
 
     st.subheader("Работа с pandas")
-    st.write("Давайте посмотрим, в каком округе москвы больше велопарковок")
+    st.write("Давайте посмотрим, в каком округе Москвы больше велопарковок")
     
     adm_data = df['AdmArea'].value_counts()
     st.bar_chart(adm_data)
@@ -119,7 +119,7 @@ with st.echo(code_location='below'):
     st.write("Видно, что больше всего парковок на улице Профсоюзной. Неудивительно: это длинная и просторная улица на юге Москвы, там много места для того чтобы покататься, и достаточно большая протяженность, чтобы на ней было много станций проката")
     st.write("Вот несколько фотографий этой улицы")
     res = requests.get('https://yandex.ru/images/search?text=улица%20профсоюзная%20москва%20красивые%20фото').text
-    bs = BeautifulSoup(res)
+    bs = BeautifulSoup(res, "html.parser")
     src_list = [x.attrs['src'] for x in bs.find_all('img')[1:]][:10]
     n_columns = 2
     cols = st.columns(n_columns)
@@ -142,7 +142,7 @@ with st.echo(code_location='below'):
     st.write("как видим, велодорожек в Москве совсем немного, в основном они сконцентрированы в центре")
     st.subheader("Построение маршрута")
     st.info("В настоящий момент выполняется вычисление расстояний между точками на графе, это может занять длительное время. Пожалуйста, дождитесь результата")
-
+    
     
     @st.cache
     def distance_between_two_points(lat1, lon1, lat2, lon2):
