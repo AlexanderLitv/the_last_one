@@ -1,0 +1,8 @@
+geopy
+streamlit_folium
+plotly
+networkx
+matplotlib
+altair
+folium
+beautifulsoup4
